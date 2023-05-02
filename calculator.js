@@ -1,4 +1,6 @@
 let buffer = "0";
+let runningTotal = 0;
+let previousOperator;
 const screen = document.querySelector(".screen");
 
 function buttonClick(value) {
@@ -16,6 +18,20 @@ function handleNumber(number) {
   } else {
     buffer += number;
   }
+}
+
+function handleMath(value) {
+  if (buffer === "0") {
+    return;
+  }
+  const intBuffer = parseInt(buffer);
+  if (runningTotal === 0) {
+    runningTotal = intBuffer;
+  } else {
+    flushOperation(intBuffer);
+  }
+  previousOperator = value;
+  buffer = "0";
 }
 
 function handleSymbol(symbol) {
@@ -37,7 +53,7 @@ function handleSymbol(symbol) {
     case "×":
     case "-":
     case "+":
-      console.log("maths symbol");
+      handleMath(symbol);
       break;
   }
 }
