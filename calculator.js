@@ -16,11 +16,30 @@ function handleNumber(number) {
   } else {
     buffer += number;
   }
-  console.log(buffer);
 }
 
 function handleSymbol(symbol) {
-  console.log("symbol");
+  switch (symbol) {
+    case "C":
+      buffer = "0";
+      break;
+    case "=":
+      console.log("equals");
+      break;
+    case "←":
+      if (buffer.length === 1) {
+        buffer = "0";
+      } else {
+        buffer = buffer.substring(0, buffer.length - 1);
+      }
+      break;
+    case "÷":
+    case "×":
+    case "-":
+    case "+":
+      console.log("maths symbol");
+      break;
+  }
 }
 
 function init() {
