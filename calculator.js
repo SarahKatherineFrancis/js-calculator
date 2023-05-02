@@ -1,5 +1,17 @@
 function buttonClick(value) {
-  console.log(value);
+  if (isNaN(parseInt(value))) {
+    handleSymbol(value);
+  } else {
+    handleNumber(value);
+  }
+}
+
+function handleNumber(number) {
+  console.log(number);
+}
+
+function handleSymbol(symbol) {
+  console.log(symbol);
 }
 
 function init() {
