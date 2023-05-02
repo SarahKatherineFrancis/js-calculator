@@ -1,17 +1,26 @@
+let buffer = "0";
+const screen = document.querySelector(".screen");
+
 function buttonClick(value) {
   if (isNaN(parseInt(value))) {
     handleSymbol(value);
   } else {
     handleNumber(value);
   }
+  rerender();
 }
 
 function handleNumber(number) {
-  console.log(number);
+  if (buffer === "0") {
+    buffer = number;
+  } else {
+    buffer += number;
+  }
+  console.log(buffer);
 }
 
 function handleSymbol(symbol) {
-  console.log(symbol);
+  console.log("symbol");
 }
 
 function init() {
@@ -20,6 +29,10 @@ function init() {
     .addEventListener("click", function (event) {
       buttonClick(event.target.innerText);
     });
+}
+
+function rerender() {
+  screen.innerText = buffer;
 }
 
 init();
